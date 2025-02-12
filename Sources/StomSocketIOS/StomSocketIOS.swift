@@ -7,7 +7,7 @@ public class StomSocketIOS: NSObject, WKScriptMessageHandler, WKNavigationDelega
     private var webView: WKWebView?  // 🔹 Strong reference to prevent deallocation
     private var isWebViewLoaded = false  // Track WebView load status
     
-    private var socketUrl: String = "https://stream.paybito.com/ChartStream/ws"
+    private var socketUrl: String = "https://stream.example.com/ChartStream/ws"
     private var subscribeTopics: String = "/user/topic/stream/tradingView"
     private var connectionURL: String?
     private var subscribeTopic: String?
@@ -19,7 +19,7 @@ public class StomSocketIOS: NSObject, WKScriptMessageHandler, WKNavigationDelega
     private var onError: ((String) -> Void)?
     
     // Combine initializers into one
-   public init(socketUrlString: String = "https://stream.paybito.com/ChartStream/ws",subscribeTopics:String) {
+   public init(socketUrlString: String = "https://stream.example.com/ChartStream/ws",subscribeTopics:String) {
         self.socketUrl = socketUrlString
         self.subscribeTopics = subscribeTopics
         super.init()
