@@ -7,16 +7,16 @@ public class StomSocketIOS: NSObject, WKScriptMessageHandler, WKNavigationDelega
     private var webView: WKWebView?  // 🔹 Strong reference to prevent deallocation
     private var isWebViewLoaded = false  // Track WebView load status
     
-    private var socketUrl: String = "https://stream.example.com/ChartStream/ws"
-    private var subscribeTopics: String = "/user/topic/stream/tradingView"
-    private var connectionURL: String?
-    private var subscribeTopic: String?
-    private var sendDestination: String?
-     var onConnect: (() -> Void)?
-    var onDisconnect: (() -> Void)?
+    public var socketUrl: String = "https://stream.example.com/ChartStream/ws"
+    public var subscribeTopics: String = "/user/topic/stream/tradingView"
+    public var connectionURL: String?
+    public var subscribeTopic: String?
+    public var sendDestination: String?
+   public  var onConnect: (() -> Void)?
+   public var onDisconnect: (() -> Void)?
     
-    var onMessageReceived: ((String) -> Void)?
-    private var onError: ((String) -> Void)?
+   public var onMessageReceived: ((String) -> Void)?
+    public var onError: ((String) -> Void)?
     
     // Combine initializers into one
    public init(socketUrlString: String = "https://stream.example.com/ChartStream/ws",subscribeTopics:String) {
