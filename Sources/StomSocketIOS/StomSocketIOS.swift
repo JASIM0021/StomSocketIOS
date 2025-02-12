@@ -15,7 +15,7 @@ public class StomSocketIOS: NSObject, WKScriptMessageHandler, WKNavigationDelega
     public  var onConnect: (() -> Void)?
     public var onDisconnect: (() -> Void)?
     
-   public var onMessageReceived: ((String) -> Void)?
+     public var onMessageReceived: ((String) -> Void)?
     public var onError: ((String) -> Void)?
     
     // Combine initializers into one
