@@ -4,7 +4,7 @@ import UIKit
 import WebKit
 
 public class StomSocketIOS: NSObject, WKScriptMessageHandler, WKNavigationDelegate {
-    private var webView: WKWebView?  // 🔹 Strong reference to prevent deallocation
+    private  var webView: WKWebView?  // 🔹 Strong reference to prevent deallocation
     private var isWebViewLoaded = false  // Track WebView load status
     
     public var socketUrl: String = "https://stream.example.com/ChartStream/ws"
@@ -14,7 +14,7 @@ public class StomSocketIOS: NSObject, WKScriptMessageHandler, WKNavigationDelega
     public var sendDestination: String?
     public  var onConnect: (() -> Void)?
     public var onDisconnect: (() -> Void)?
-    
+    private var isConnected:Bool = false
      public var onMessageReceived: ((String) -> Void)?
     public var onError: ((String) -> Void)?
     
@@ -108,13 +108,15 @@ public class StomSocketIOS: NSObject, WKScriptMessageHandler, WKNavigationDelega
     // MARK: - WKScriptMessageHandler (Receiving JS Messages)
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "socketHandler", let response = message.body as? String {
-            print("📩 Received from WebSocket: \(response)")
+//            print("📩 Received from WebSocket: \(response)")
             
             switch response {
                 
             case "Connected" :
+                isConnected = true
                 self.onConnect?()
             case "Disconnected":
+                isConnected = false
                 self.onDisconnect?()
             case "SendRequest":
                 print("✅ Request Send Sucessfully.")
